@@ -1,0 +1,6 @@
+---
+- name: Security Hardening
+  hosts: webservers
+  become: yes
+  roles:
+    - security

@@ -1,0 +1,31 @@
+---
+- name: Install monitoring tools
+  apt:
+    name:
+      - htop
+      - sysstat
+    state: present
+
+- name: Create monitoring script
+  copy:
+    content: |
+      #!/bin/bash
+      echo "=== System Health Report ==="
+      echo "Date: $(date)"
+      echo ""
+      echo "CPU Usage:"
+      top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8"%"}'
+      echo ""
+      echo "Memory Usage:"
+      free -h | awk 'NR==2{printf "Used: %s/%s (%.2f%%)\n", $3,$2,$3*100/$2}'
+      echo ""
+      echo "Disk Usage:"
+      df -h / | awk 'NR==2{printf "%s used\n", $5}'
+    dest: /usr/local/bin/system-health.sh
+    mode: '0755'
+
+- name: Schedule monitoring
+  cron:
+    name: "System health check"
+    minute: "*/30"
+    job: "/usr/local/bin/system-health.sh >> /var/log/system-health.log 2>&1"

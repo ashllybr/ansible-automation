@@ -1,0 +1,59 @@
+---
+- name: Update all packages
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: Install security packages
+  apt:
+    name:
+      - ufw
+      - fail2ban
+      - unattended-upgrades
+    state: present
+
+- name: Configure UFW defaults
+  ufw:
+    state: enabled
+    policy: deny
+
+- name: Allow SSH
+  ufw:
+    rule: allow
+    port: '22'
+    proto: tcp
+
+- name: Allow HTTP
+  ufw:
+    rule: allow
+    port: '80'
+    proto: tcp
+
+- name: Configure fail2ban
+  copy:
+    content: |
+      [sshd]
+      enabled = true
+      port = 22
+      filter = sshd
+      logpath = /var/log/auth.log
+      maxretry = 3
+      bantime = 3600
+    dest: /etc/fail2ban/jail.local
+
+- name: Start fail2ban
+  service:
+    name: fail2ban
+    state: restarted
+    enabled: yes
+
+- name: Disable root login
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin no'
+
+- name: Restart SSH
+  service:
+    name: sshd
+    state: restarted

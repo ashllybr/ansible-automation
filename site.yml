@@ -1,0 +1,26 @@
+---
+- name: Complete Infrastructure Setup
+  hosts: webservers
+  become: yes
+  
+  roles:
+    - webserver
+    - security
+    - monitoring
+    
+  post_tasks:
+    - name: Final verification
+      uri:
+        url: "http://{{ ansible_default_ipv4.address }}"
+        status_code: 200
+      
+    - name: Display completion message
+      debug:
+        msg: |
+          ====================================
+          Infrastructure Setup Complete!
+          ====================================
+          Web Server: http://{{ ansible_default_ipv4.address }}
+          Security: Enabled (UFW, Fail2ban)
+          Monitoring: Active (/var/log/system-health.log)
+          ====================================
