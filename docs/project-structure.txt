@@ -1,0 +1,33 @@
+.
+├── README.md
+├── ansible.cfg
+├── deploy-webserver.yml
+├── docs
+│   └── project-structure.txt
+├── inventories
+├── molecule
+├── playbooks
+│   ├── provision-multicloud.yml
+│   ├── test-failover.yml
+│   └── validate-dr-readiness.yml
+├── project-structure.txt
+├── roles
+│   ├── infrastructure
+│   │   ├── tasks
+│   │   └── templates
+│   ├── monitoring
+│   │   └── tasks
+│   └── security
+│       └── tasks
+├── screenshots
+│   ├── ansible-playbook-running.png
+│   ├── fail2ban-status.png
+│   ├── project-structure.png
+│   ├── ufw-status.png
+│   ├── website-node1.png
+│   └── website-node2.png
+├── security-hardening.yml
+├── site.yml
+└── tests
+
+15 directories, 16 files

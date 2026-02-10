@@ -1,0 +1,33 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install NGINX
+  apt:
+    name: nginx
+    state: present
+
+- name: Start and enable NGINX
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Create custom index page
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    mode: '0644'
+
+- name: Configure firewall for HTTP
+  ufw:
+    rule: allow
+    port: '80'
+    proto: tcp
+
+- name: Restart NGINX
+  service:
+    name: nginx
+    state: restarted
