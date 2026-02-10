@@ -1,212 +1,92 @@
-\# 🚀 Enterprise Multi-Cloud Disaster Recovery Automation Platform
+# 🚀 Ansible Infrastructure Automation Framework
 
+**Practical Ubuntu infrastructure automation with security hardening and monitoring**
 
+![Ansible](https://img.shields.io/badge/Ansible-2.16.3-red)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04-orange)
+![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-green)
+![Testing](https://img.shields.io/badge/Testing-Idempotent-blue)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
-\*\*Production-grade Ansible framework for automated disaster recovery across AWS, Azure, and Google Cloud\*\*
+## 📋 Overview
 
+This project demonstrates **real, working Ansible automation** for Ubuntu infrastructure. Unlike theoretical examples, this code has been **tested and verified to work**, implementing practical DevOps patterns:
 
+- **Configuration Management** - Automated Ubuntu server setup
+- **Security Hardening** - CIS-aligned security practices
+- **Monitoring Setup** - Prometheus Node Exporter with health checks
+- **Infrastructure Testing** - Idempotent, repeatable automation
 
-!\[Ansible](https://img.shields.io/badge/Ansible-5.0.0-red)
+## 🎯 What This Project Demonstrates
 
-!\[Multi-Cloud](https://img.shields.io/badge/Multi--Cloud-AWS%20|%20Azure%20|%20GCP-blue)
+Through this implementation, I've developed skills in:
 
-!\[CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub\_Actions-green)
+- **Infrastructure as Code** with Ansible
+- **Security automation** following industry best practices
+- **Monitoring integration** for system observability
+- **Idempotent playbook design** for reliable automation
+- **Real-world problem solving** with working solutions
 
-!\[License](https://img.shields.io/badge/License-MIT-blue)
+## 🔧 Features Implemented
 
-!\[Tests](https://img.shields.io/badge/Tests-Molecule%20|%20pytest-success)
+### **✅ Working Infrastructure Automation**
+- Ubuntu package management and system updates
+- Service configuration and management
+- User and permission automation
+- File system configuration
 
+### **✅ Real Security Hardening**
+- SSH security configuration (root login disabled, key-based auth only)
+- UFW firewall setup with proper rule management
+- Automated security updates configuration
+- Security tools installation (fail2ban, auditd)
 
+### **✅ Actual Monitoring Implementation**
+- Prometheus Node Exporter installation and configuration
+- Custom health monitoring scripts
+- Automated log rotation
+- System health cron jobs
 
----
+### **✅ Production Practices**
+- Idempotent playbook design
+- Modular role structure
+- Configuration backup before changes
+- Service validation and verification
 
-
-
-\## 🎯 Business Problem
-
-
-
-Enterprises risk \*\*48+ hours of downtime\*\* during disasters due to manual recovery processes. This platform automates cross-cloud disaster recovery, reducing:
-
-\- \*\*Failover time\*\*: 48 hours → 15 minutes
-
-\- \*\*Configuration errors\*\*: 40% → 2%
-
-\- \*\*Recovery costs\*\*: $50,000/incident → $300/incident
-
-
-
----
-
-
-
-\## 📊 Key Metrics
-
-
-
-| Metric | Before (Manual) | After (Automated) | Improvement |
-
-|--------|-----------------|-------------------|-------------|
-
-| \*\*DR Failover Time\*\* | 48 hours | 15 minutes | \*\*99.5% faster\*\* |
-
-| \*\*Error Rate\*\* | 40% | 2% | \*\*95% reduction\*\* |
-
-| \*\*Recovery Cost\*\* | $50,000 | $300 | \*\*99.4% cheaper\*\* |
-
-| \*\*Testing Frequency\*\* | Quarterly | Daily | \*\*90x more frequent\*\* |
-
-| \*\*Compliance Coverage\*\* | 60% | 98% | \*\*Complete audit trail\*\* |
-
-
-
-\*\*Annual Business Impact:\*\*
-
-\- \*\*Downtime Cost Avoided\*\*: $2.1M
-
-\- \*\*Labor Savings\*\*: 1,200 hours/year
-
-\- \*\*Compliance Risk Reduction\*\*: 90%
-
-
-
----
-
-
-
-\## 🏗️ Architecture
-
-\[Disaster Detection] → \[Ansible Controller]
-
-↓
-
-\[AWS Region] \[Azure Region] \[GCP Region]
-
-↓ ↓ ↓
-
-\[Identical Infrastructure]
-
-↓ ↓ ↓
-
-\[Automated Failover \& Validation]
-
-
+## 📁 Project Structure
+ansible-automation/
+├── site.yml # Main playbook orchestrator
+├── playbooks/ # Individual automation workflows
+│ ├── provision.yml # System provisioning
+│ ├── security.yml # Security hardening
+│ └── monitoring.yml # Monitoring setup
+├── inventories/ # Environment definitions
+│ └── development/hosts # Local development targets
+├── roles/ # Reusable components
+│ ├── infrastructure/ # Base system tasks
+│ ├── security/ # Security tasks
+│ └── monitoring/ # Monitoring tasks
+└── .github/workflows/ # CI/CD pipelines
 
 text
 
-
-
-\### \*\*Multi-Cloud Consistency Guarantee\*\*
-
-\- Identical VPC/Network configurations
-
-\- Consistent security policies
-
-\- Uniform monitoring setup
-
-\- Automated configuration validation
-
-
-
----
-
-
-
-\## 🔥 Features
-
-
-
-\### \*\*Disaster Recovery Automation\*\*
-
-\- \*\*Automated Failover\*\*: One-command DR activation
-
-\- \*\*Multi-Cloud Provisioning\*\*: Identical infra across AWS/Azure/GCP
-
-\- \*\*Health Validation\*\*: Pre/post-failover validation checks
-
-\- \*\*Rollback Safety\*\*: Automated rollback on failure detection
-
-
-
-\### \*\*Production Engineering\*\*
-
-\- \*\*Infrastructure as Code\*\*: Complete environment definition
-
-\- \*\*Security by Design\*\*: CIS benchmarks, encrypted communications
-
-\- \*\*Monitoring Integration\*\*: Cloud-native + custom monitoring
-
-\- \*\*Compliance Automation\*\*: Audit trails, configuration validation
-
-
-
-\### \*\*Enterprise DevOps\*\*
-
-\- \*\*CI/CD Pipeline\*\*: Automated testing and deployment
-
-\- \*\*Molecule Testing\*\*: Infrastructure validation testing
-
-\- \*\*Dynamic Inventories\*\*: Cloud provider integration
-
-\- \*\*Role-Based Access\*\*: Secure execution controls
-
-
-
----
-
-
-
-\## 📈 Real-World Impact
-
-
-
-\### \*\*Financial Services Case Study\*\*
-
-\*Client: Regional Bank with $10B AUM\*
-
-
-
-\*\*Challenge:\*\* 72-hour RTO (Recovery Time Objective), $250K/hour downtime cost
-
-\*\*Solution:\*\* Implemented this DR automation platform
-
-\*\*Results:\*\*
-
-\- ✅ \*\*RTO\*\*: 72 hours → 22 minutes
-
-\- ✅ \*\*Annual Savings\*\*: $1.8M in avoided downtime
-
-\- ✅ \*\*Audit Compliance\*\*: 100% automated evidence collection
-
-\- ✅ \*\*Testing Frequency\*\*: Quarterly → Weekly (52x improvement)
-
-
-
----
-
-
-
-\## 🚀 Quick Start
-
-
-
-\### \*\*Prerequisites\*\*
-
-\- Ansible 5.0+
-
-\- AWS/Azure/GCP accounts (or simulated with Docker)
-
-\- Python 3.11+
-
-
-
-\### \*\*1. Clone \& Setup\*\*
-
-```bash
-
+## 🚀 Getting Started
+
+### **Prerequisites**
+- Ubuntu 22.04 LTS (or compatible)
+- Ansible 2.16+
+- Python 3.11+
+
+### **Quick Start**
+\`\`\`bash
+# Clone the repository
 git clone https://github.com/ashllybr/ansible-automation.git
-
 cd ansible-automation
 
-pip install -r requirements.txt
+# Run complete infrastructure setup
+ansible-playbook -i inventories/development/hosts site.yml --ask-become-pass
 
+# Run individual components
+ansible-playbook -i inventories/development/hosts playbooks/security.yml --ask-become-pass
+ansible-playbook -i inventories/development/hosts playbooks/monitoring.yml --ask-become-pass
+\`\`\`
