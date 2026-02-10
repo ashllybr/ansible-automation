@@ -10,24 +10,48 @@
 
 ## 📋 Overview
 
-This project demonstrates **real, working Ansible automation** for Ubuntu infrastructure.
-Unlike theoretical examples, this code has been **tested and verified to work**,
-implementing practical DevOps patterns:
+This project demonstrates **real, working Ansible automation** for Ubuntu infrastructure. Unlike theoretical examples, this code has been **tested and verified to work**, implementing practical DevOps patterns:
 
 - **Configuration Management** - Automated Ubuntu server setup
 - **Security Hardening** - CIS-aligned security practices
 - **Monitoring Setup** - Prometheus Node Exporter with health checks
 - **Infrastructure Testing** - Idempotent, repeatable automation
 
+## 🏗️ Architecture Overview
+
+[Ansible Control Node]
+        ↓
+[Multi-Environment Automation]
+        ↓
+[Ubuntu Infrastructure Provisioning]
+        ↓
+[Security Hardening] + [Monitoring Setup]
+        ↓
+[Verification & Operational Validation]
+
+This layered architecture ensures systematic infrastructure deployment with validation at each stage.
+
 ## 🎯 What This Project Demonstrates
 
-Through this implementation, I have developed skills in:
+Through this implementation, I've developed skills in:
 
 - **Infrastructure as Code** with Ansible
 - **Security automation** following industry best practices
 - **Monitoring integration** for system observability
 - **Idempotent playbook design** for reliable automation
 - **Real-world problem solving** with working solutions
+
+## ⚙️ Design Decisions
+
+Key architectural and technology choices reflect production engineering considerations:
+
+- **UFW selected** for native Ubuntu integration and simplicity over complex firewall solutions
+- **Node exporter chosen** for lightweight monitoring footprint and Prometheus ecosystem compatibility
+- **Role-based structure** used to ensure modularity, reuse, and separation of concerns
+- **Idempotent playbooks** designed for safe re-execution and configuration consistency
+- **Ubuntu 22.04 LTS** as target platform for stability and enterprise support lifecycle
+- **Modular playbook design** allowing independent execution of infrastructure components
+- **Configuration validation** implemented at each stage to ensure system integrity
 
 ## 🔧 Features Implemented
 
@@ -55,6 +79,18 @@ Through this implementation, I have developed skills in:
 - Configuration backup before changes
 - Service validation and verification
 
+## 📊 Expected Outcome
+
+After successful execution, the target system will have:
+
+- ✅ **SSH Security**: Root login disabled, password authentication disabled
+- ✅ **Firewall**: UFW active with minimal allowed ports (22, 80, 443)
+- ✅ **Monitoring Service**: Node Exporter running on port 9100
+- ✅ **Security Packages**: fail2ban and auditd installed and configured
+- ✅ **Automated Updates**: Security updates configured via unattended-upgrades
+- ✅ **Health Monitoring**: System health checks running every 5 minutes
+- ✅ **System Compliance**: Baseline configuration aligned with security best practices
+
 ## 📁 Project Structure
 
 \`\`\`
@@ -70,6 +106,8 @@ ansible-automation/
 │   ├── infrastructure/       # Base system tasks
 │   ├── security/            # Security tasks
 │   └── monitoring/          # Monitoring tasks
+├── docs/                      # Documentation
+│   └── architecture.md       # Architecture details
 └── .github/workflows/        # CI/CD pipelines
 \`\`\`
 
@@ -112,8 +150,7 @@ sudo tail -f /var/log/system-health.log
 
 ## 📝 Notes
 
-This is a **practical demonstration project** showcasing real Ansible automation skills.
-The implementations focus on:
+This is a **practical demonstration project** showcasing real Ansible automation skills. The implementations focus on:
 
 - **Educational value**: Demonstrating actual working automation
 - **Professional practices**: Following industry standards
@@ -126,10 +163,9 @@ MIT License
 
 ## 👤 Author
 
-Alex Brian - Cloud & DevOps Engineer
+Alex Brian - Cloud & DevOps Engineer  
 GitHub: [ashllybr](https://github.com/ashllybr)
 
 ---
 
-*This project represents real, working infrastructure automation code that has been tested and verified.*
-*It demonstrates practical DevOps engineering skills through implementation rather than theoretical examples.*
+*This project represents real, working infrastructure automation code that has been tested and verified. It demonstrates practical DevOps engineering skills through implementation rather than theoretical examples.*
