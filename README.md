@@ -68,6 +68,17 @@ Key architectural and technology choices reflect production engineering consider
 - Ubuntu package management and system updates
 - Service configuration and management
 - User and permission automation
+## 🎯 Operational Philosophy
+
+This project prioritizes:
+
+- **Deterministic infrastructure changes** - Predictable outcomes from every execution
+- **Repeatable deployments** - Consistent results across environments
+- **Minimal external dependencies** - Self-contained automation where possible
+- **Security-first baseline configuration** - Default-secure posture by design
+
+This approach ensures reliable, maintainable infrastructure automation that scales from development to production.
+
 - File system configuration
 
 ### **✅ Real Security Hardening**
@@ -102,23 +113,24 @@ After successful execution, the target system will have:
 
 ## 📁 Project Structure
 
-\`\`\`bash
+```bash
 ansible-automation/
-├── site.yml                    # Main playbook orchestrator
-├── playbooks/                  # Individual automation workflows
-│   ├── provision.yml          # System provisioning
-│   ├── security.yml           # Security hardening
-│   └── monitoring.yml         # Monitoring setup
-├── inventories/               # Environment definitions
-│   └── development/hosts     # Local development targets
-├── roles/                     # Reusable components
-│   ├── infrastructure/       # Base system tasks
-│   ├── security/            # Security tasks
-│   └── monitoring/          # Monitoring tasks
-├── docs/                      # Documentation
-│   └── architecture.md       # Architecture details
-└── .github/workflows/        # CI/CD pipelines
-\`\`\`
+├── site.yml
+├── playbooks/
+│   ├── provision.yml
+│   ├── security.yml
+│   └── monitoring.yml
+├── inventories/
+│   └── development/hosts
+├── roles/
+│   ├── infrastructure/
+│   ├── security/
+│   └── monitoring/
+├── docs/
+│   └── architecture.md
+└── .github/workflows/
+```
+
 
 ## 🚀 Getting Started
 
