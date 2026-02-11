@@ -5,35 +5,35 @@
 - name: 🏢 ENTERPRISE DR PLATFORM
   hosts: localhost
   connection: local
-  gather_facts: yes
-  
+  gather_facts: true
+
   tasks:
     - name: BUSINESS IMPACT BANNER
-      debug:
+      ansible.builtin.debug:
         msg: |
           ========================================
           🚀 ENTERPRISE DISASTER RECOVERY PLATFORM
           ========================================
           • 95% Error Reduction
-          • $2.1M Annual Savings  
+          • $2.1M Annual Savings
           • 15min Failover (was 48h)
           • AWS + Azure + GCP
           ========================================
 
     - name: PROVISION AWS
-      debug:
+      ansible.builtin.debug:
         msg: "✅ AWS: us-east-1 | t3.small | DR Standby"
 
     - name: PROVISION AZURE
-      debug:
+      ansible.builtin.debug:
         msg: "✅ Azure: eastus | Standard_B1s | DR Standby"
 
     - name: PROVISION GCP
-      debug:
+      ansible.builtin.debug:
         msg: "✅ GCP: us-central1 | e2-small | DR Standby"
 
     - name: DEPLOYMENT COMPLETE
-      debug:
+      ansible.builtin.debug:
         msg: |
           🎉 ENTERPRISE DR INFRASTRUCTURE READY!
           Run: ansible-playbook playbooks/validate-dr-readiness.yml
