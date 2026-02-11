@@ -1,0 +1,82 @@
+---
+# security.yml - Ubuntu security hardening
+- name: Apply security hardening
+  hosts: ubuntu_servers
+  become: yes
+
+  tasks:
+    # First install ufw
+    - name: Install UFW
+      apt:
+        name: ufw
+        state: present
+
+    # SSH Security
+    - name: Backup SSH config
+      copy:
+        src: /etc/ssh/sshd_config
+        dest: /etc/ssh/sshd_config.backup
+        remote_src: yes
+
+    - name: Disable root SSH login
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PermitRootLogin'
+        line: 'PermitRootLogin no'
+        state: present
+
+    - name: Disable password authentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PasswordAuthentication'
+        line: 'PasswordAuthentication no'
+        state: present
+
+    - name: Restart SSH service
+      service:
+        name: ssh
+        state: restarted
+
+    # Firewall (now ufw is installed)
+    - name: Enable UFW firewall
+      ufw:
+        state: enabled
+        policy: deny
+        direction: incoming
+
+    - name: Allow SSH
+      ufw:
+        rule: allow
+        port: '22'
+        proto: tcp
+
+    - name: Allow HTTP
+      ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+
+    # Security packages
+    - name: Install security tools
+      apt:
+        name:
+          - fail2ban
+          - unattended-upgrades
+          - auditd
+        state: present
+
+    - name: Enable automatic security updates
+      copy:
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        content: |
+          Unattended-Upgrade::Allowed-Origins {
+              "${distro_id}:${distro_codename}-security";
+          };
+          Unattended-Upgrade::Automatic-Reboot "true";
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Security hardening complete
+      debug:
+        msg: "Security hardening applied to {{ ansible_hostname }}"

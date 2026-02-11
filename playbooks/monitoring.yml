@@ -1,0 +1,78 @@
+---
+# monitoring.yml - Basic monitoring setup
+- name: Setup monitoring
+  hosts: ubuntu_servers
+  become: yes
+
+  tasks:
+    # System monitoring tools
+    - name: Install monitoring packages
+      apt:
+        name:
+          - prometheus-node-exporter
+          - sysstat
+          - iotop
+          - iftop
+        state: present
+
+    # Configure Node Exporter
+    - name: Enable Node Exporter
+      service:
+        name: prometheus-node-exporter
+        enabled: yes
+        state: started
+
+    # Create custom metrics script
+    - name: Create system health script
+      copy:
+        dest: /usr/local/bin/system-health.sh
+        content: |
+          #!/bin/bash
+          echo "=== System Health Check ==="
+          echo "Date: $(date)"
+          echo "Uptime: $(uptime -p)"
+          echo "Load: $(cat /proc/loadavg)"
+          echo "Memory: $(free -h | awk '/^Mem:/ {print $3 "/" $2}')"
+          echo "Disk: $(df -h / | awk 'NR==2 {print $3 "/" $2}')"
+          echo "==========================="
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Create health check cron job
+      cron:
+        name: "System health check"
+        minute: "*/5"
+        job: "/usr/local/bin/system-health.sh >> /var/log/system-health.log"
+
+    # Log management
+    - name: Configure log rotation
+      copy:
+        dest: /etc/logrotate.d/system-health
+        content: |
+          /var/log/system-health.log {
+              weekly
+              rotate 4
+              compress
+              missingok
+              notifempty
+          }
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Create monitoring directory
+      file:
+        path: /etc/monitoring
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Monitoring setup complete
+      debug:
+        msg: |
+          Monitoring setup complete on {{ ansible_hostname }}
+          - Node Exporter: http://localhost:9100
+          - Health logs: /var/log/system-health.log
+          - Check every 5 minutes

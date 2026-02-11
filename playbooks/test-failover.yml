@@ -15,7 +15,7 @@
           🚨 ENTERPRISE FAILOVER TESTING
           ========================================
           • AWS → Azure Failover Simulation
-          • GCP → AWS Failover Simulation  
+          • GCP → AWS Failover Simulation
           • Cross-cloud Validation
           • RTO/RPO Verification
           ========================================
@@ -28,7 +28,7 @@
       ansible.builtin.debug:
         msg: "✅ AWS→Azure: Services migrated successfully"
 
-    - name: SIMULATE GCP FAILURE  
+    - name: SIMULATE GCP FAILURE
       ansible.builtin.debug:
         msg: "⚠️ GCP US-CENTRAL1: Simulating zone failure"
 

@@ -1,0 +1,34 @@
+---
+# provision.yml - Real Ubuntu provisioning
+- name: Basic Ubuntu setup
+  hosts: ubuntu_servers
+  become: yes
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install basic packages
+      apt:
+        name:
+          - curl
+          - wget
+          - vim
+          - htop
+        state: present
+
+    - name: Create test file
+      copy:
+        dest: /tmp/ansible_test.txt
+        content: |
+          Ansible provisioned this server
+          Date: {{ ansible_date_time.date }}
+          Hostname: {{ ansible_hostname }}
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Show completion
+      debug:
+        msg: "Provisioning complete on {{ ansible_hostname }}"
