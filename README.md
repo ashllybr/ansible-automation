@@ -15,6 +15,9 @@ This project demonstrates **real, working Ansible automation** for Ubuntu infras
 - **Configuration Management** - Automated Ubuntu server setup
 - **Security Hardening** - CIS-aligned security practices
 - **Monitoring Setup** - Prometheus Node Exporter with health checks
+
+👉 **Scope clarification**: This repository focuses on practical infrastructure automation patterns rather than large-scale production orchestration, emphasizing repeatability, security baselines, and operational validation.
+
 - **Infrastructure Testing** - Idempotent, repeatable automation
 
 ## 🏗️ Architecture Overview
