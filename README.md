@@ -15,10 +15,9 @@ This project demonstrates **real, working Ansible automation** for Ubuntu infras
 - **Configuration Management** - Automated Ubuntu server setup
 - **Security Hardening** - CIS-aligned security practices
 - **Monitoring Setup** - Prometheus Node Exporter with health checks
+- **Infrastructure Testing** - Idempotent, repeatable automation
 
 ⚠️ **Scope**: This repository focuses on demonstrating infrastructure automation patterns rather than full-scale production orchestration. The emphasis is on repeatability, security baselines, and operational workflows.
-
-- **Infrastructure Testing** - Idempotent, repeatable automation
 
 ## 🔑 Key Engineering Concepts Demonstrated
 
@@ -26,7 +25,6 @@ This project demonstrates **real, working Ansible automation** for Ubuntu infras
 - **Security baseline enforcement** - Consistent security configuration across systems
 - **Configuration consistency** - Uniform deployment across environments
 - **Operational validation workflows** - Automated verification of system state
-
 
 ## 🏗️ Architecture Overview
 
@@ -131,14 +129,14 @@ ansible-automation/
 
 ### **Quick Start**
 \`\`\`bash
-# Clone the repository
+# Clone repository
 git clone https://github.com/ashllybr/ansible-automation.git
 cd ansible-automation
 
-# Run complete infrastructure setup
+# Run complete setup
 ansible-playbook -i inventories/development/hosts site.yml --ask-become-pass
 
-# Run individual components
+# Or run individual components
 ansible-playbook -i inventories/development/hosts playbooks/security.yml --ask-become-pass
 ansible-playbook -i inventories/development/hosts playbooks/monitoring.yml --ask-become-pass
 \`\`\`
@@ -148,16 +146,39 @@ ansible-playbook -i inventories/development/hosts playbooks/monitoring.yml --ask
 After running the playbooks, verify the deployment:
 
 \`\`\`bash
-# Check security configuration
+# Check SSH security
 sudo grep "PermitRootLogin\|PasswordAuthentication" /etc/ssh/sshd_config
 
 # Check firewall status
 sudo ufw status
 
-# Check monitoring
+# Check monitoring service
 systemctl status prometheus-node-exporter
+
+# View health logs
 sudo tail -f /var/log/system-health.log
 \`\`\`
+
+## 🔄 Trade-offs & Design Considerations
+
+- **Simulated environment** chosen instead of real cloud deployment to focus on automation patterns.
+- **UFW used** instead of enterprise firewalls to keep implementation lightweight and Ubuntu-native.
+- **Node exporter selected** for simplicity rather than full observability stack integration.
+- **Static inventories** used for clarity rather than dynamic cloud discovery in this demonstration.
+
+## ⚙️ Engineering Constraints
+
+- Designed for single-node Ubuntu environments for demonstration clarity.
+- Avoids external SaaS dependencies to maintain simplicity and focus.
+- Prioritizes readability and maintainability over advanced orchestration features.
+- Emphasizes educational value and repeatability over production-scale deployment.
+
+## 🔄 Execution Flow
+
+1. **Provision system baseline** - Package management and essential tools
+2. **Apply security hardening** - SSH, firewall, automated updates
+3. **Configure monitoring** - Node exporter, health checks, log rotation
+4. **Validate operational state** - Service verification and compliance checks
 
 ## 📝 Notes
 
@@ -170,16 +191,11 @@ This is a **practical demonstration project** showcasing real Ansible automation
 
 ## 📜 License
 
+MIT License
 
-## 🔄 Trade-offs & Design Considerations
+## 👤 Author
 
-- **Simulated environment** chosen instead of real cloud deployment to focus on automation patterns.
-- **UFW used** instead of enterprise firewalls to keep implementation lightweight and Ubuntu-native.
-- **Node exporter selected** for simplicity rather than full observability stack integration.
-- **Static inventories** used for clarity rather than dynamic cloud discovery in this demonstration.
-
-
-Alex Brian - Cloud & DevOps Engineer  
+Alex Brian - Cloud & DevOps Engineer
 GitHub: [ashllybr](https://github.com/ashllybr)
 
 ---
