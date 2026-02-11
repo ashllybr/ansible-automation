@@ -93,7 +93,7 @@ After successful execution, the target system will have:
 
 ## 📁 Project Structure
 
-\`\`\`
+\`\`\`bash
 ansible-automation/
 ├── site.yml                    # Main playbook orchestrator
 ├── playbooks/                  # Individual automation workflows
