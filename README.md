@@ -29,14 +29,15 @@ This project demonstrates **real, working Ansible automation** for Ubuntu infras
 ## 🏗️ Architecture Overview
 
 [Ansible Control Node]
-        ↓
+↓
 [Multi-Environment Automation]
-        ↓
+↓
 [Ubuntu Infrastructure Provisioning]
-        ↓
+↓
 [Security Hardening] + [Monitoring Setup]
-        ↓
+↓
 [Verification & Operational Validation]
+
 
 This layered workflow models typical infrastructure automation pipelines used in DevOps environments, emphasizing validation, repeatability, and operational safety.
 
@@ -213,4 +214,3 @@ GitHub: [ashllybr](https://github.com/ashllybr)
 ---
 
 *This project represents real, working infrastructure automation code that has been tested and verified. It demonstrates practical DevOps engineering skills through implementation rather than theoretical examples.*
-<- Automated security updates GitHub markdown render refresh -->
