@@ -16,9 +16,17 @@ This project demonstrates **real, working Ansible automation** for Ubuntu infras
 - **Security Hardening** - CIS-aligned security practices
 - **Monitoring Setup** - Prometheus Node Exporter with health checks
 
-👉 **Scope clarification**: This repository focuses on practical infrastructure automation patterns rather than large-scale production orchestration, emphasizing repeatability, security baselines, and operational validation.
+⚠️ **Scope**: This repository focuses on demonstrating infrastructure automation patterns rather than full-scale production orchestration. The emphasis is on repeatability, security baselines, and operational workflows.
 
 - **Infrastructure Testing** - Idempotent, repeatable automation
+
+## 🔑 Key Engineering Concepts Demonstrated
+
+- **Idempotent infrastructure automation** - Safe re-execution without side effects
+- **Security baseline enforcement** - Consistent security configuration across systems
+- **Configuration consistency** - Uniform deployment across environments
+- **Operational validation workflows** - Automated verification of system state
+
 
 ## 🏗️ Architecture Overview
 
@@ -32,11 +40,11 @@ This project demonstrates **real, working Ansible automation** for Ubuntu infras
         ↓
 [Verification & Operational Validation]
 
-This layered architecture ensures systematic infrastructure deployment with validation at each stage.
+This layered workflow models typical infrastructure automation pipelines used in DevOps environments, emphasizing validation, repeatability, and operational safety.
 
 ## 🎯 What This Project Demonstrates
 
-Through this implementation, I've developed skills in:
+This implementation demonstrates practical experience in:
 
 - **Infrastructure as Code** with Ansible
 - **Security automation** following industry best practices
@@ -162,9 +170,14 @@ This is a **practical demonstration project** showcasing real Ansible automation
 
 ## 📜 License
 
-MIT License
 
-## 👤 Author
+## 🔄 Trade-offs & Design Considerations
+
+- **Simulated environment** chosen instead of real cloud deployment to focus on automation patterns.
+- **UFW used** instead of enterprise firewalls to keep implementation lightweight and Ubuntu-native.
+- **Node exporter selected** for simplicity rather than full observability stack integration.
+- **Static inventories** used for clarity rather than dynamic cloud discovery in this demonstration.
+
 
 Alex Brian - Cloud & DevOps Engineer  
 GitHub: [ashllybr](https://github.com/ashllybr)
